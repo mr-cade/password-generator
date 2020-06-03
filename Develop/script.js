@@ -4,27 +4,53 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   var pwLength = prompt("input number of characters 8-128")
     if(pwLength < 8 || pwLength > 128) {
-      alert("Please select a number of characters between 8-128")
+      alert("Please select a number of characters between 8-128");
+      prompt("input number of characters 8-128");
     } 
-  
-  var incLowercase = confirm("include lowercase letters?");
-  var incUppercase = confirm("include uppercase letters?");
-  var incNumber = confirm("include numbers?");
-  var incSpecial = confirm("include special characters?");
+  var special = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+
+// if statements to turn on/off character types in variable charset(line 48)
+  var lowerCase = confirm("include lowercase letters?");
+    if (lowerCase === true) {
+      lowerCase = "abcdefghijklmnopqrstuvwxyz"
+    } else {
+      lowerCase = ''
+    };
+        
+    var upperCase = confirm("include upper case letters?");
+    if (upperCase === true) {
+      upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    } else {
+      upperCase = ''
+    };
+
+    var nums = confirm("include numbers?");
+    if (nums === true) {
+      nums = "0123456789"
+    } else {
+      nums = ''
+    };
+
+    var special = confirm("include special characters?");
+    if (special === true) {
+      special = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+    } else {
+      special = ''
+    };
+
   var retVal = ""
   
 
-  if (incLowercase && incUppercase && incNumber && incSpecial) {
-    var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-  } else if (incLowercase && incUppercase && incNumber) {
-    var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-  } 
-  for(var i = 0; i < pwLength; i++) {
+// concatenate chosen characters into charset string
+  var charset = lowerCase + upperCase + nums + special 
+  console.log(charset)
+
+// assemble password for given number of characters
+  for(var i = 0; i <= pwLength; i++) {
     retVal += charset.charAt(Math.floor(Math.random() * charset.length));
   }
   return retVal
 }
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
