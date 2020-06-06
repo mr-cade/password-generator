@@ -13,4 +13,4 @@ If no character types are selected, you will be notified and the function will e
 If the proper criteria are met, the password will be generated and displayed on the page.
 ```
 
-![screenshot](screenShot.png?raw=true "screenshot")
+![screenshot](Develop/screenShot.png?raw=true "screenshot")
