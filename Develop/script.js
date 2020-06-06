@@ -2,7 +2,6 @@
 var generateBtn = document.querySelector("#generate");
 var retVal = ""
 
-
 function generatePassword() {
   // input prompt for password length
   var pwLength = prompt("input number of characters 8-128")
@@ -11,7 +10,7 @@ function generatePassword() {
       return "Please try again";
     } 
 
-  // if statements to turn on/off character types in variable charset(line 48)
+  // if statements to turn on/off character types in variable charset(line 43)
   var lowerCase = confirm("include lowercase letters?");
     if (lowerCase === true) {
       lowerCase = "abcdefghijklmnopqrstuvwxyz"
@@ -44,22 +43,22 @@ function generatePassword() {
   var charset = lowerCase + upperCase + nums + special 
   console.log(charset)
   if (charset === '') {
-    return "Please select at least one type of character, and try again."
+    alert("Please select at least one type of character.")
   }
 
   // assemble password for given number of characters
-  for(var i = 0; i <= pwLength; i++) {
+  for(var i = 0; i < pwLength; i++) {
     retVal += charset.charAt(Math.floor(Math.random() * charset.length));
   }
   return retVal
   }
+  
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
